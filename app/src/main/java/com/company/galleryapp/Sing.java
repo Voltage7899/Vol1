@@ -22,10 +22,11 @@ import com.google.firebase.database.ValueEventListener;
 import static android.content.ContentValues.TAG;
 
 public class Sing extends AppCompatActivity {
-
+    //Переменные для привязки к элементам
     private Button loginButton;
     private EditText phone, pass;
     private TextView adminlink, clientlink;
+    //Ссылка на бд и название таблицы
     private String parentDataBaseName = "User";
     private DatabaseReference database;
 
@@ -34,6 +35,7 @@ public class Sing extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sing);
+        //Получение ссылки для бд
         database= FirebaseDatabase.getInstance().getReference();
 
         init();
@@ -41,6 +43,7 @@ public class Sing extends AppCompatActivity {
     }
 
     private void sing() {
+        //установка слушателя на кнопку регистрации
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,7 +54,9 @@ public class Sing extends AppCompatActivity {
                     Toast.makeText(Sing.this, "Введите все данные", Toast.LENGTH_SHORT).show();
                 }
                 else {
+                    //Если выбрана сылка юзера
                     if(parentDataBaseName=="User"){
+                        //То идет добавление данных и провекра их
                         database.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -87,7 +92,7 @@ public class Sing extends AppCompatActivity {
                         });
                     }
                     if (parentDataBaseName=="Admin"){
-
+//Тоже самое для админа ,что и для юзера
                         if(TextUtils.isEmpty(phone_field)&&TextUtils.isEmpty(pass_field)){
                             Toast.makeText(Sing.this, "Введите все данные", Toast.LENGTH_SHORT).show();
                         }
@@ -132,13 +137,14 @@ public class Sing extends AppCompatActivity {
     }
 
     public void init() {
+        //Привязка элементов
         loginButton = findViewById(R.id.button);
         phone = findViewById(R.id.Phone);
         pass = findViewById(R.id.Pass);
 
         adminlink = findViewById(R.id.adminlink);
         clientlink = findViewById(R.id.userlink);
-
+//Установка слушателей
         clientlink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -148,7 +154,7 @@ public class Sing extends AppCompatActivity {
                 parentDataBaseName = "User";
             }
         });
-
+//Установка слушателя
         adminlink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

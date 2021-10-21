@@ -3,7 +3,7 @@ package com.company.galleryapp;
 import com.google.firebase.database.Exclude;
 
 public class ImageUpload {
-    //Модель данных загружаемой в бд
+    //Модель данных картинки загружаемых в бд
     private String name;
     private String imageUri;
     private String key;

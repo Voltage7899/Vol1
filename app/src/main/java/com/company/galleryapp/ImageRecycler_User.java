@@ -25,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ImageRecycler_User extends AppCompatActivity {
+    //Все тоже самое,что и для Imagerecycler за исключением отсутсвия кода для удаления
 
     private RecyclerView recyclerView;
     private ImageAdapter imageAdapter;
